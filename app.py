@@ -18,8 +18,8 @@ def load_models(file_path):
 
     return sig, tfv
 
-data , dataframe = load_data("C:\SPD Docs\AI Projects\ML Projects\movie_recommendation_system\dumped_obj")
-sig , tfv = load_models("C:\SPD Docs\AI Projects\ML Projects\movie_recommendation_system\dumped_obj")
+data , dataframe = load_data(r"C:\SPD Docs\AI Projects\ML Projects\movie_recommendation_system\dumped_obj")
+sig , tfv = load_models(r"C:\SPD Docs\AI Projects\ML Projects\movie_recommendation_system\dumped_obj")
 
 def give_recommendations(movie_title, model, data, dataframe):
     indices = pd.Series(data=data.index, index=data['original_title'])
