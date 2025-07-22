@@ -3,7 +3,9 @@
 
 # Movie Recommendation System
 
-A content-based movie recommender web app built with Streamlit. This app suggests movies similar to your favorite one using advanced data analysis and natural language processing techniques.
+A content-based movie recommender web app built with Streamlit. 
+**[👉 Try the Deployed App Here](https://movie-recommender-4ysamwcbp6f2enaveqrrsp.streamlit.app/)**
+This app suggests movies similar to your favorite one using advanced data analysis and natural language processing techniques.
 
 ## Features
 
