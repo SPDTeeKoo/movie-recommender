@@ -1,25 +1,28 @@
 import pandas as pd
 import joblib
+import os
 import warnings
+import streamlit as st
 from warnings import filterwarnings
+
 filterwarnings("ignore")
 
 
-def load_data(file_path):
-    data = pd.read_csv(file_path + "/" + 'movie_data_for_app.csv')
-    dataframe = pd.read_csv(file_path + "/" + 'movie_dataframe_for_app.csv')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, "dumped_obj")
 
+def load_data(file_path):
+    data = pd.read_csv(os.path.join(file_path, 'movie_data_for_app.csv'))
+    dataframe = pd.read_csv(os.path.join(file_path, 'movie_dataframe_for_app.csv'))
     return data, dataframe
 
-
 def load_models(file_path):
-    sig = joblib.load(file_path + "/" + 'sigmoid_kernel.pkl')
-    tfv = joblib.load(file_path + "/" + 'tfidf_vectorizer.pkl')
-
+    sig = joblib.load(os.path.join(file_path, 'sigmoid_kernel.pkl'))
+    tfv = joblib.load(os.path.join(file_path, 'tfidf_vectorizer.pkl'))
     return sig, tfv
 
-data , dataframe = load_data(r"C:\SPD Docs\AI Projects\ML Projects\movie_recommendation_system\dumped_obj")
-sig , tfv = load_models(r"C:\SPD Docs\AI Projects\ML Projects\movie_recommendation_system\dumped_obj")
+data , dataframe = load_data(DATA_DIR)
+sig , tfv = load_models(DATA_DIR)
 
 def give_recommendations(movie_title, model, data, dataframe):
     indices = pd.Series(data=data.index, index=data['original_title'])
@@ -31,8 +34,6 @@ def give_recommendations(movie_title, model, data, dataframe):
 
     return dataframe['original_title'][movie_indices_10]
 
-from plotly.graph_objs.bar import selected
-import streamlit as st
 
 st.set_page_config(page_title="Movie Recommender" , layout="centered")
 st.title("Movie Recommender")
